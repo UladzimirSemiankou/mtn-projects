@@ -1,0 +1,54 @@
+<project name="${project_name}" default="dist" basedir=".">
+
+    <property file="config/project.properties"/>
+
+    <path id="libs">
+	<fileset dir="${lib_dir}">
+            <include name="*.jar"/>
+	</fileset>
+    </path>
+
+    <target name="clean">
+        <delete dir="${build_dir}"/>
+    </target>
+
+    <target name="init" depends="clean">
+	<mkdir dir="${build_dir}"/>
+	<mkdir dir="${compile_dir}"/>
+	<mkdir dir="${jar_dir}"/>
+	<tstamp>
+	    <format property="time" pattern="yyyy-mm-dd_HH:mm:ss"/>
+	</tstamp>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${project_src}" destdir="${compile_dir}" includeantruntime="false" classpathref="libs"/>
+    </target>
+    
+    <target name="jar" depends="compile">
+        <jar destfile="${jar_dir}/${project_name}.jar" basedir="${compile_dir}"/>
+    </target>
+
+    <target name="test" depends="jar">
+        <junit printsummary="yes">
+	    <classpath>
+		<path refid="libs"/>
+		<pathelement location="${jar_dir}/${project_name}.jar"/>
+	    </classpath>
+	    <batchtest fork="yes">
+		<fileset dir="${test_src}" includes="UnitTest.java" />
+	    </batchtest>
+        </junit>
+    </target>
+
+    <target name="dist" depends="test">
+	<tar destfile="${build_dir}/${project_name}-${time}.tar">
+	    <tarfileset dir=".">
+	        <include name="config/project.properties"/>
+		<include name="${jar_dir}/*.jar"/>
+		<include name="${lib_dir}/*"/>
+	    </tarfileset>
+	</tar>
+    </target>
+
+</project>
