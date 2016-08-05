@@ -8,7 +8,7 @@
     <name>SEMENKOV_VLADIMIR</name>
     <properties> <!-- Adds timestamp property and UTF-8 encoding -->
 	<timestamp>${maven.build.timestamp}</timestamp>
-        <maven.build.timestamp.format>yyyy-MM-dd HH:mm</maven.build.timestamp.format>
+        <maven.build.timestamp.format>yyyy-MM-dd_HH-mm</maven.build.timestamp.format>
 	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <build>
