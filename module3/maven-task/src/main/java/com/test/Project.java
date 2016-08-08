@@ -7,7 +7,7 @@ class Project {
   private Project() {
   }
    public static void test() {
-     logger.log("test")
+     logger.log("test");
    }
    public static void main(String[] args) {
      logger.log("Hellow MTN");
