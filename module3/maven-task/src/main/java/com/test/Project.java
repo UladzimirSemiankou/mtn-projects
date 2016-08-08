@@ -4,12 +4,13 @@ package com.test;
 
 class Project {
 //dependency on Apache commons-collections
-  public static void test() {
-    logger.log("test");
-  }
+  private Project() {
+   public static void test() {
+     logger.log("test");
+   }
   
-  public static void main(String[] args) {
-    logger.log("Hellow MTN");
+   public static void main(String[] args) {
+     logger.log("Hellow MTN");
+   }
   }
-
 }
