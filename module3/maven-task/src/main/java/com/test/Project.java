@@ -7,9 +7,9 @@ class Project {
   private Project() {
   }
    public static void test() {
-     logger.log("test");
+     System.out.println("test");
    }
    public static void main(String[] args) {
-     logger.log("Hellow MTN");
+     System.out.println("Hellow MTN");
    }
 }
